@@ -1,13 +1,13 @@
 /*==================================================*
  * AMRUTHA WEBSITE
- * MUSIC.JS
+ * MUSIC + BIRTHDAY OPENING
  *==================================================*/
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    /*=========================================
-      Background Music
-    =========================================*/
+    /*================================================
+      BACKGROUND MUSIC
+    ================================================*/
 
     const audio = new Audio("assets/music/birthday.mp3");
 
@@ -16,12 +16,64 @@ document.addEventListener("DOMContentLoaded", () => {
     audio.preload = "auto";
 
     let playing = false;
-    let started = false;
 
 
-    /*=========================================
-      Music Button
-    =========================================*/
+    /*================================================
+      BIRTHDAY OPENING SCREEN
+    ================================================*/
+
+    const openingScreen = document.createElement("div");
+
+    openingScreen.className = "birthday-opening";
+
+    openingScreen.innerHTML = `
+
+        <div class="opening-stars"></div>
+
+        <div class="opening-glow glow-one"></div>
+        <div class="opening-glow glow-two"></div>
+
+        <div class="birthday-card">
+
+            <div class="opening-flower">🌸</div>
+
+            <div class="opening-small">
+                A LITTLE SURPRISE FOR YOU
+            </div>
+
+            <h1>
+                A Birthday Message
+            </h1>
+
+            <h2>
+                For Amrutha 💗
+            </h2>
+
+            <div class="opening-line"></div>
+
+            <p>
+                Something special is waiting for you...
+            </p>
+
+            <button class="open-birthday-btn">
+                <span>✨</span>
+                Open Birthday Surprise
+                <span>→</span>
+            </button>
+
+            <div class="opening-hint">
+                Tap to begin your surprise
+            </div>
+
+        </div>
+    `;
+
+    document.body.appendChild(openingScreen);
+
+
+    /*================================================
+      MUSIC BUTTON
+    ================================================*/
 
     const musicBtn = document.createElement("button");
 
@@ -34,67 +86,72 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(musicBtn);
 
 
-    /*=========================================
-      Start Music
-    =========================================*/
+    /*================================================
+      OPEN BIRTHDAY SURPRISE
+    ================================================*/
 
-    function startMusic() {
+    const openButton =
+        openingScreen.querySelector(".open-birthday-btn");
 
-        if (started) return;
 
-        const promise = audio.play();
+    openButton.addEventListener("click", async () => {
 
-        if (promise !== undefined) {
+        try {
 
-            promise
-                .then(() => {
+            await audio.play();
 
-                    playing = true;
-                    started = true;
+            playing = true;
 
-                    musicBtn.classList.add("playing");
+            musicBtn.classList.add("playing");
 
-                    removeStartListeners();
+        } catch (error) {
 
-                })
-                .catch(() => {
-
-                    /*
-                     Browser blocked playback.
-                     Wait for a real user interaction.
-                    */
-
-                });
+            console.log("Music could not start:", error);
 
         }
 
-    }
+
+        /*--------------------------------------------
+          Close opening screen
+        --------------------------------------------*/
+
+        openingScreen.classList.add("opening-hide");
 
 
-    /*=========================================
-      Toggle Music
-    =========================================*/
+        /*--------------------------------------------
+          Remove after animation
+        --------------------------------------------*/
 
-    musicBtn.addEventListener("click", () => {
+        setTimeout(() => {
+
+            openingScreen.remove();
+
+        }, 1000);
+
+    });
+
+
+    /*================================================
+      MUSIC BUTTON CONTROL
+    ================================================*/
+
+    musicBtn.addEventListener("click", async () => {
 
         if (!playing) {
 
-            audio.play()
-                .then(() => {
+            try {
 
-                    playing = true;
-                    started = true;
+                await audio.play();
 
-                    musicBtn.classList.add("playing");
+                playing = true;
 
-                    removeStartListeners();
+                musicBtn.classList.add("playing");
 
-                })
-                .catch(() => {
+            } catch (error) {
 
-                    console.log("Music playback was blocked.");
+                console.log("Music playback blocked.");
 
-                });
+            }
 
         } else {
 
@@ -109,75 +166,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    /*=========================================
-      REAL USER INTERACTIONS
-      These are allowed by browsers
-    =========================================*/
-
-    const startEvents = [
-        "pointerdown",
-        "touchend",
-        "keydown"
-    ];
-
-
-    function handleUserInteraction() {
-
-        startMusic();
-
-    }
-
-
-    startEvents.forEach(event => {
-
-        document.addEventListener(
-            event,
-            handleUserInteraction,
-            { once: false, passive: true }
-        );
-
-    });
-
-
-    /*=========================================
-      Scroll / Wheel Attempt
-    =========================================*/
-
-    window.addEventListener("wheel", () => {
-
-        startMusic();
-
-    }, { passive: true });
-
-
-    window.addEventListener("scroll", () => {
-
-        startMusic();
-
-    }, { passive: true });
-
-
-    /*=========================================
-      Remove Listeners After Music Starts
-    =========================================*/
-
-    function removeStartListeners() {
-
-        startEvents.forEach(event => {
-
-            document.removeEventListener(
-                event,
-                handleUserInteraction
-            );
-
-        });
-
-    }
-
-
-    /*=========================================
-      Visibility Volume
-    =========================================*/
+    /*================================================
+      VOLUME WHEN TAB IS HIDDEN
+    ================================================*/
 
     document.addEventListener("visibilitychange", () => {
 
