@@ -13,9 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     audio.loop = true;
     audio.volume = 0.35;
+    audio.preload = "auto";
 
     let playing = false;
-    let userStartedMusic = false;
+    let started = false;
 
 
     /*=========================================
@@ -25,11 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const musicBtn = document.createElement("button");
 
     musicBtn.className = "music-button";
-
-    musicBtn.setAttribute(
-        "aria-label",
-        "Play birthday music"
-    );
 
     musicBtn.innerHTML = `
         <i class="fa-solid fa-music"></i>
@@ -42,35 +38,33 @@ document.addEventListener("DOMContentLoaded", () => {
       Start Music
     =========================================*/
 
-    async function startMusic() {
+    function startMusic() {
 
-        if (playing) {
-            return;
-        }
+        if (started) return;
 
-        try {
+        const promise = audio.play();
 
-            await audio.play();
+        if (promise !== undefined) {
 
-            playing = true;
-            userStartedMusic = true;
+            promise
+                .then(() => {
 
-            musicBtn.classList.add("playing");
+                    playing = true;
+                    started = true;
 
-            musicBtn.setAttribute(
-                "aria-label",
-                "Pause birthday music"
-            );
+                    musicBtn.classList.add("playing");
 
-            console.log("Birthday music started.");
+                    removeStartListeners();
 
-            removeInteractionListeners();
+                })
+                .catch(() => {
 
-        } catch (error) {
+                    /*
+                     Browser blocked playback.
+                     Wait for a real user interaction.
+                    */
 
-            console.log(
-                "Music waiting for user interaction."
-            );
+                });
 
         }
 
@@ -78,102 +72,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /*=========================================
-      First Interaction
+      Toggle Music
     =========================================*/
 
-    function handleFirstInteraction(event) {
-
-        /*
-         * Don't start music when clicking
-         * the music button itself.
-         */
-
-        if (
-            event.target === musicBtn ||
-            musicBtn.contains(event.target)
-        ) {
-            return;
-        }
-
-        startMusic();
-
-    }
-
-
-    /*=========================================
-      Desktop interactions
-    =========================================*/
-
-    document.addEventListener(
-        "pointerdown",
-        handleFirstInteraction,
-        { passive: true }
-    );
-
-    document.addEventListener(
-        "wheel",
-        handleFirstInteraction,
-        { passive: true }
-    );
-
-    document.addEventListener(
-        "keydown",
-        handleFirstInteraction,
-        { passive: true }
-    );
-
-
-    /*=========================================
-      Mobile touch
-    =========================================*/
-
-    document.addEventListener(
-        "touchstart",
-        handleFirstInteraction,
-        { passive: true }
-    );
-
-
-    /*=========================================
-      Remove listeners after music starts
-    =========================================*/
-
-    function removeInteractionListeners() {
-
-        document.removeEventListener(
-            "pointerdown",
-            handleFirstInteraction
-        );
-
-        document.removeEventListener(
-            "wheel",
-            handleFirstInteraction
-        );
-
-        document.removeEventListener(
-            "keydown",
-            handleFirstInteraction
-        );
-
-        document.removeEventListener(
-            "touchstart",
-            handleFirstInteraction
-        );
-
-    }
-
-
-    /*=========================================
-      Music Button — Play / Pause
-    =========================================*/
-
-    musicBtn.addEventListener("click", async (event) => {
-
-        event.stopPropagation();
+    musicBtn.addEventListener("click", () => {
 
         if (!playing) {
 
-            await startMusic();
+            audio.play()
+                .then(() => {
+
+                    playing = true;
+                    started = true;
+
+                    musicBtn.classList.add("playing");
+
+                    removeStartListeners();
+
+                })
+                .catch(() => {
+
+                    console.log("Music playback was blocked.");
+
+                });
 
         } else {
 
@@ -183,35 +104,93 @@ document.addEventListener("DOMContentLoaded", () => {
 
             musicBtn.classList.remove("playing");
 
-            musicBtn.setAttribute(
-                "aria-label",
-                "Play birthday music"
-            );
-
         }
 
     });
 
 
     /*=========================================
-      Tab Visibility
+      REAL USER INTERACTIONS
+      These are allowed by browsers
     =========================================*/
 
-    document.addEventListener(
-        "visibilitychange",
-        () => {
+    const startEvents = [
+        "pointerdown",
+        "touchend",
+        "keydown"
+    ];
 
-            if (document.hidden) {
 
-                audio.volume = 0.10;
+    function handleUserInteraction() {
 
-            } else {
+        startMusic();
 
-                audio.volume = 0.35;
+    }
 
-            }
+
+    startEvents.forEach(event => {
+
+        document.addEventListener(
+            event,
+            handleUserInteraction,
+            { once: false, passive: true }
+        );
+
+    });
+
+
+    /*=========================================
+      Scroll / Wheel Attempt
+    =========================================*/
+
+    window.addEventListener("wheel", () => {
+
+        startMusic();
+
+    }, { passive: true });
+
+
+    window.addEventListener("scroll", () => {
+
+        startMusic();
+
+    }, { passive: true });
+
+
+    /*=========================================
+      Remove Listeners After Music Starts
+    =========================================*/
+
+    function removeStartListeners() {
+
+        startEvents.forEach(event => {
+
+            document.removeEventListener(
+                event,
+                handleUserInteraction
+            );
+
+        });
+
+    }
+
+
+    /*=========================================
+      Visibility Volume
+    =========================================*/
+
+    document.addEventListener("visibilitychange", () => {
+
+        if (document.hidden) {
+
+            audio.volume = 0.10;
+
+        } else {
+
+            audio.volume = 0.35;
 
         }
-    );
+
+    });
 
 });
