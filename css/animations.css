@@ -1,0 +1,817 @@
+/*==================================================
+AMRUTHA WEBSITE
+ANIMATIONS.CSS
+==================================================*/
+
+/*==============================
+BACKGROUND
+==============================*/
+
+@keyframes backgroundFloat{
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.08);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+.gradient{
+
+    animation:backgroundFloat 18s ease-in-out infinite;
+
+}
+
+/*==============================
+GLOW
+==============================*/
+
+@keyframes glowFloat{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-40px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.glow-1{
+
+    animation:glowFloat 12s ease-in-out infinite;
+
+}
+
+.glow-2{
+
+    animation:glowFloat 16s ease-in-out infinite reverse;
+
+}
+
+.glow-3{
+
+    animation:glowFloat 20s ease-in-out infinite;
+
+}
+
+/*==============================
+NAVBAR
+==============================*/
+
+@keyframes navbarDown{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(-80px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.navbar{
+
+    animation:navbarDown .9s ease;
+
+}
+
+/*==============================
+FADE UP
+==============================*/
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(45px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.hero-tag{
+
+    animation:fadeUp .8s ease;
+
+}
+
+.hero h1{
+
+    animation:fadeUp 1s ease;
+
+}
+
+.hero-text{
+
+    animation:fadeUp 1.2s ease;
+
+}
+
+.main-btn{
+
+    animation:fadeUp 1.4s ease;
+
+}
+
+.scroll-indicator{
+
+    animation:fadeUp 1.6s ease;
+
+}
+
+/*==============================
+PUPPY
+==============================*/
+
+@keyframes puppyFloat{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-18px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.puppy{
+
+    animation:puppyFloat 5s ease-in-out infinite;
+
+}
+
+/*==============================
+PANDA
+==============================*/
+
+@keyframes pandaFloat{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-14px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.panda{
+
+    animation:pandaFloat 6s ease-in-out infinite;
+
+}
+
+/*==============================
+MOON CARD
+==============================*/
+
+@keyframes moonFloat{
+
+    0%{
+
+        transform:
+        translateY(0)
+        rotate(-5deg);
+
+    }
+
+    50%{
+
+        transform:
+        translateY(-10px)
+        rotate(3deg);
+
+    }
+
+    100%{
+
+        transform:
+        translateY(0)
+        rotate(-5deg);
+
+    }
+
+}
+
+.moon-card{
+
+    animation:moonFloat 7s ease-in-out infinite;
+
+}
+
+/*==============================
+BUTTON
+==============================*/
+
+.main-btn{
+
+    transition:
+
+        transform .35s,
+
+        box-shadow .35s;
+
+}
+
+.main-btn:hover{
+
+    transform:
+
+    translateY(-6px);
+
+    box-shadow:
+
+    0 28px 55px rgba(255,100,160,.35);
+
+}
+
+/*==============================
+SCROLL
+==============================*/
+
+@keyframes bounce{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(8px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.scroll-indicator i{
+
+    animation:bounce 2s infinite;
+
+}
+
+/*==============================
+MEMORY CARDS
+==============================*/
+
+.memory-card{
+
+    transition:
+
+    transform .4s,
+
+    box-shadow .4s;
+
+}
+
+.memory-card:hover{
+
+    transform:
+
+    translateY(-10px);
+
+    box-shadow:
+
+    0 30px 60px rgba(255,170,210,.30);
+
+}
+
+/*==============================
+LETTER
+==============================*/
+
+.letter-card{
+
+    transition:.4s;
+
+}
+
+.letter-card:hover{
+
+    transform:
+
+    translateY(-8px);
+
+}
+
+/*==============================
+NAV LINKS
+==============================*/
+
+.nav-links a{
+
+    position:relative;
+
+}
+
+.nav-links a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-8px;
+
+    width:0;
+
+    height:2px;
+
+    background:var(--primary);
+
+    transition:.35s;
+
+}
+
+.nav-links a:hover::after{
+
+    width:100%;
+
+}
+/*==================================
+Timeline
+==================================*/
+
+.timeline{
+
+    perspective:1200px;
+
+}
+
+.memory-card{
+
+    transform-style:preserve-3d;
+
+    will-change:transform;
+
+}
+@keyframes loaderSpin{
+
+0%{
+
+transform:rotate(0);
+
+}
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+/*==================================================
+PETAL ANIMATION
+==================================================*/
+
+@keyframes fallPetal{
+
+0%{
+
+transform:
+translateY(-100px)
+rotate(0deg);
+
+}
+
+25%{
+
+transform:
+translateX(40px)
+translateY(25vh)
+rotate(120deg);
+
+}
+
+50%{
+
+transform:
+translateX(-35px)
+translateY(50vh)
+rotate(240deg);
+
+}
+
+75%{
+
+transform:
+translateX(30px)
+translateY(75vh)
+rotate(320deg);
+
+}
+
+100%{
+
+transform:
+translateX(-20px)
+translateY(110vh)
+rotate(360deg);
+
+}
+
+}
+
+.petal{
+
+animation:fallPetal linear infinite;
+
+}
+/*==================================================
+SPARKLE ANIMATION
+==================================================*/
+
+@keyframes sparkle{
+
+0%{
+
+opacity:.15;
+
+transform:
+
+scale(.5);
+
+}
+
+50%{
+
+opacity:1;
+
+transform:
+
+scale(1.6);
+
+}
+
+100%{
+
+opacity:.15;
+
+transform:
+
+scale(.5);
+
+}
+
+}
+
+.sparkle{
+
+animation:sparkle ease-in-out infinite;
+
+}
+.progress-bar{
+
+transition:width .15s linear;
+
+}
+/*==================================================
+NAVBAR HOVER
+==================================================*/
+
+.nav-links a{
+
+transition:
+
+color .35s,
+
+transform .35s;
+
+}
+
+.nav-links a:hover{
+
+transform:translateY(-2px);
+
+}
+/*==================================================
+CARD SHIMMER
+==================================================*/
+
+@keyframes shimmer{
+
+0%{
+
+left:-120%;
+
+}
+
+100%{
+
+left:160%;
+
+}
+
+}
+
+.memory-card:hover::after{
+
+animation:shimmer 1.2s linear;
+
+}
+.open-letter{
+
+transition:.35s;
+
+}
+
+.open-letter:hover{
+
+transform:translateY(-5px);
+
+}
+/*==================================================
+BACKGROUND ANIMATION
+==================================================*/
+
+@keyframes cloudMove{
+
+0%{
+
+transform:
+
+translateX(-250px);
+
+}
+
+100%{
+
+transform:
+
+translateX(calc(100vw + 300px));
+
+}
+
+}
+
+.cloud{
+
+animation:cloudMove linear infinite;
+
+}
+
+@keyframes starTwinkle{
+
+0%{
+
+opacity:.2;
+
+transform:scale(.5);
+
+}
+
+50%{
+
+opacity:1;
+
+transform:scale(1.8);
+
+}
+
+100%{
+
+opacity:.2;
+
+transform:scale(.5);
+
+}
+
+}
+
+.star{
+
+animation:starTwinkle ease-in-out infinite;
+
+}
+/*==================================================
+FADE SECTIONS
+==================================================*/
+
+.show-section{
+
+animation:sectionFade 1.2s ease;
+
+}
+
+@keyframes sectionFade{
+
+0%{
+
+opacity:0;
+
+transform:translateY(60px);
+
+}
+
+100%{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+/*==================================================
+BUTTERFLY ANIMATION
+==================================================*/
+
+@keyframes butterflyFly{
+
+0%{
+
+transform:
+translate(0,0)
+rotate(0deg);
+
+}
+
+25%{
+
+transform:
+translate(40px,-50px)
+rotate(10deg);
+
+}
+
+50%{
+
+transform:
+translate(-30px,-100px)
+rotate(-10deg);
+
+}
+
+75%{
+
+transform:
+translate(30px,-150px)
+rotate(8deg);
+
+}
+
+100%{
+
+transform:
+translate(0,-220px)
+rotate(0deg);
+
+}
+
+}
+
+.butterfly{
+
+animation:butterflyFly ease-in-out infinite;
+
+}
+/*==================================================
+CONFETTI
+==================================================*/
+
+@keyframes confettiFall{
+
+0%{
+
+transform:
+
+translateY(-50px)
+
+rotate(0deg);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:
+
+translateY(110vh)
+
+translateX(120px)
+
+rotate(720deg);
+
+opacity:0;
+
+}
+
+}
+
+.confetti{
+
+animation:confettiFall linear forwards;
+
+}
+@keyframes moonGlow{
+
+0%{
+
+box-shadow:
+
+0 25px 60px rgba(255,120,170,.15);
+
+}
+
+50%{
+
+box-shadow:
+
+0 25px 80px rgba(255,120,170,.35);
+
+}
+
+100%{
+
+box-shadow:
+
+0 25px 60px rgba(255,120,170,.15);
+
+}
+
+}
+
+.moon-card{
+
+animation:
+
+moonFloat 7s ease-in-out infinite,
+
+moonGlow 5s ease-in-out infinite;
+
+}
