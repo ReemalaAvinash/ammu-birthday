@@ -161,109 +161,109 @@
 
 
     <!-- =====================================================
-         HERO SECTION
-         ===================================================== -->
+     HERO SECTION
+===================================================== -->
 
-    <section id="hero"
-             class="hero">
+<section id="hero" class="hero photo-hero">
 
+    <!-- BIG PHOTO PREVIEW -->
 
-        <!-- =================================================
-             LEFT — PUPPY
-             ================================================= -->
+    <div class="photo-preview-main">
 
-        <div class="hero-left">
+        <img
+            id="birthdayPreviewImage"
+            src="assets/images/puppy.png"
+            alt="Birthday Memory"
+        >
 
-            <img src="assets/images/puppy.png"
-                 alt="Puppy"
-                 class="puppy">
-
+        <div class="preview-label">
+            HAPPY BIRTHDAY
         </div>
 
-
-        <!-- =================================================
-             CENTER — MAIN CONTENT
-             ================================================= -->
-
-        <div class="hero-center">
+    </div>
 
 
-            <!-- MOON / IMAGE CARD -->
+    <!-- EXISTING BIRTHDAY TEXT -->
 
-            <div class="moon-card">
+    <div class="hero-center photo-hero-center">
 
-                <img src="assets/images/butterfly.jpg"
-                     alt="Butterfly">
+        <span class="hero-tag">
+            HAPPY BIRTHDAY
+        </span>
 
-            </div>
+        <h1>
+            Amruthaa Garuu
+        </h1>
 
+        <p class="hero-text">
+            A small birthday surprise,
+            Mee Kosam Edho Try Chesa andi.
+        </p>
 
-            <!-- SMALL TITLE -->
+        <button
+            class="main-btn"
+            type="button"
+            onclick="document.querySelector('#memories').scrollIntoView({ behavior: 'smooth' })"
+        >
+            Explore Memories
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
 
-            <span class="hero-tag">
-                HAPPY BIRTHDAY
+        <div class="scroll-indicator">
+
+            <span>
+                Scroll to Begin
             </span>
 
-
-            <!-- MAIN NAME -->
-
-            <h1>
-                Amruthaa Garuu
-            </h1>
-
-
-            <!-- DESCRIPTION -->
-
-            <p class="hero-text">
-
-                A small birthday surprise,
-                Mee Kosam Edho Try Chesa andi.
-
-            </p>
-
-
-            <!-- EXPLORE BUTTON -->
-
-            <button class="main-btn"
-                    type="button">
-
-                Explore Memories
-
-                <i class="fa-solid fa-arrow-right"></i>
-
-            </button>
-
-
-            <!-- SCROLL INDICATOR -->
-
-            <div class="scroll-indicator">
-
-                <span>
-                    Scroll to Begin
-                </span>
-
-                <i class="fa-solid fa-chevron-down"></i>
-
-            </div>
-
+            <i class="fa-solid fa-chevron-down"></i>
 
         </div>
 
-
-        <!-- =================================================
-             RIGHT — PANDA
-             ================================================= -->
-
-        <div class="hero-right">
-
-            <img src="assets/images/panda.png"
-                 alt="Panda"
-                 class="panda">
-
-        </div>
+    </div>
 
 
-    </section>
+    <!-- PHOTO THUMBNAILS -->
+
+    <div class="birthday-photo-thumbnails">
+
+        <button
+            class="photo-thumb active"
+            data-image="assets/images/puppy.png"
+        >
+            <img src="assets/images/puppy.png" alt="Memory 1">
+        </button>
+
+        <button
+            class="photo-thumb"
+            data-image="assets/images/butterfly.jpg"
+        >
+            <img src="assets/images/butterfly.jpg" alt="Memory 2">
+        </button>
+
+        <button
+            class="photo-thumb"
+            data-image="assets/images/panda.png"
+        >
+            <img src="assets/images/panda.png" alt="Memory 3">
+        </button>
+
+        <button
+            class="photo-thumb"
+            data-image="assets/images/bear.jpg"
+        >
+            <img src="assets/images/bear.jpg" alt="Memory 4">
+        </button>
+
+        <button
+            class="photo-thumb"
+            data-image="assets/images/smile.jpg"
+        >
+            <img src="assets/images/smile.jpg" alt="Memory 5">
+        </button>
+
+    </div>
+
+</section>
 
 
     <!-- =====================================================
@@ -394,8 +394,25 @@
 
             </article>
 
-
             <!-- MEMORY 6 -->
+
+            <article class="memory-card">
+
+                <div class="memory-date">
+                    29th November 2025
+                </div>
+
+                <h3>
+                    100 Days Streak
+                </h3>
+
+                <p>
+                    Niku antha special kakapovachu but edhe naku challa special andhuke guruthuku petukuna 😅
+                </p>
+                       
+            </article>
+
+            <!-- MEMORY 7 -->
 
             <article class="memory-card">
 
@@ -413,6 +430,24 @@
 
             </article>
 
+            <!-- MEMORY 8 -->
+
+            <article class="memory-card">
+
+                <div class="memory-date">
+                    3rd Septemeber 2026
+                </div>
+
+                <h3>
+                    <span class="clear-number">1</span> Year Streak
+                    
+                </h3>
+
+                <p>
+                    Ee 365 Days Streak Complete avinandhuku Nikey Thanks Ammrutha....challa disturb chesa kadha snap pettu timer vacchindi ani andhuke sry and Thanks Amrutha 😊
+                </p>
+
+            </article>
 
             <!-- TODAY / BIRTHDAY -->
 
@@ -618,6 +653,8 @@
     <script src="js/animations.js"></script>
 
     <script src="js/timeline.js"></script>
+
+    <script src="js/photo-slider.js"></script>
 
     <script src="js/music.js"></script>
 
